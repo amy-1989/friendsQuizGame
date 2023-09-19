@@ -1,0 +1,57 @@
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&display=swap');
+
+body {
+    background-color: black;
+    font-family: 'caveat', 'sans-serif';
+
+}
+
+.logo {
+    background: url('../images/friends-logo.jpg') no-repeat center center;
+    background-size: contain;
+    width: 80vw;
+    height: 30vh;
+    margin: auto;
+}
+
+.quizArea {
+    height: fit-content;
+    width: 60vw;
+    margin: auto;
+    background-color: white;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+
+.question {
+    height: 10vh;
+    width: 40vw;
+    border: 1px solid black;
+    font-weight: 700;
+    margin: auto;
+    margin-top: 16px;
+}
+
+.options {
+    height: 10vh;
+    width: 40vw;
+    border: 1px solid black;
+    font-weight: 400;
+    display: inline-flex;
+    margin: auto;
+}
+
+ul {
+    list-style-type: none;
+    width: 40vw;
+    padding: 0;
+}
+
+.score {
+    height: fit-content;
+    width: fit-content;
+    margin: auto;
+}
