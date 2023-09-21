@@ -1,4 +1,8 @@
-
+let myQuestions = [
+    { question: "",
+      options: {}
+      correct
+]
 beginQuiz() {};
 
 correctAnswer() {};
