@@ -1,39 +1,92 @@
-![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
+# Friends Quiz Game
+This is a Trivia Quiz Game for fans of the popular TV show Friends. 
 
-Welcome,
+## User Experience
 
-This is the Code Institute student template for Codeanywhere. If you are using Gitpod then you need [this template](https://github.com/Code-Institute-Org/gitpod-full-template) instead.  We have preinstalled all of the tools you need to get started. It's perfectly ok to use this template as the basis for your project submissions.
+- User Stories
+  
+  - First time visitor Goals
+    - As a first time visitor I want to learn how to play the game.
+    - As a first time visitor I want to navigate easily through the game.
+    - As a first time visitor I want to be able to see my score.
+  
+  - Returning Visitor Goals
+    - As a returning visitor I want to be able to answer different questions.
+    - As a returning visitor I want to be able to see my progress/score and compare previous playthroughs.
+    - As a returning visitor I want to be able to bypass instructional sections.
+  
+  - Frequent Visitor Goals
+    - As a returning visitor I want to be able to play new questions.
+    - As a returning visitor I want to be able to see how my scores compare to other users.
 
-You can safely delete this README.md file, or change it for your own project. Please do read it at least once, though! It contains some important information about Codeanywhere and the extensions we use. Some of this information has been updated since the video content was created. The last update to this file was: **August 30th, 2023**
+- Design
+  
+  - Colour Scheme
+  
+  - Typography
+  
+  - Imagery
+  
+- Wireframes
+  
+  ![Image of wireframe for mobile & desktop devices](./documents/images/friends-wireframe.png)
 
-## Codeanywhere Reminders
+## Features
 
-To run a frontend (HTML, CSS, Javascript only) application in Codeanywhere, in the terminal, type:
+## Technologies Used
 
-`python3 -m http.server`
+### Languages Used
 
-A button should appear to click: _Open Preview_ or _Open Browser_.
+### Frameworks, Libraries & Programs Used
 
-To run a frontend (HTML, CSS, Javascript only) application in Codeanywhere with no-cache, you can use this alias for `python3 -m http.server`.
+## Testing
 
-`http_server`
+### Testing User Stories from the User Experience (UX) Section
+    
+### Further Testing
 
-To run a backend Python file, type `python3 app.py`, if your Python file is named `app.py` of course.
+### Known Bugs
 
-A button should appear to click: _Open Preview_ or _Open Browser_.
+## Deployment
 
-In Codeanywhere you have superuser security privileges by default. Therefore you do not need to use the `sudo` (superuser do) command in the bash terminal in any of the lessons.
+### GitHub Pages
 
-To log into the Heroku toolbelt CLI:
+The project was deployed to GitHub Pages using the following steps...
 
-1. Log in to your Heroku account and go to _Account Settings_ in the menu under your avatar.
-2. Scroll down to the _API Key_ and click _Reveal_
-3. Copy the key
-4. In Codeanywhere, from the terminal, run `heroku_config`
-5. Paste in your API key when asked
+Log in to GitHub and locate the GitHub Repository
+At the top of the Repository (not top of page), locate the "Settings" Button on the menu.
+Scroll down the Settings page until you locate the "GitHub Pages" Section.
+Under "Source", click the dropdown called "None" and select "Main", then "Save".
+The page will automatically refresh.
+The now published site link  will be at the top of the "GitHub Pages" section.
 
-You can now use the `heroku` CLI program - try running `heroku apps` to confirm it works. This API key is unique and private to you so do not share it. If you accidentally make it public then you can create a new one with _Regenerate API Key_.
+### Forking the GitHub Repository
 
----
+By forking the GitHub Repository we make a copy of the original repository on our GitHub account to view and/or make changes without affecting the original repository by using the following steps...
 
-Happy coding!
+Log in to GitHub and locate the GitHub Repository
+At the top of the Repository (not top of page) just above the "Settings" Button on the menu, locate the "Fork" Button.
+You should now have a copy of the original repository in your GitHub account.
+
+### Making a Local Clone
+
+Log in to GitHub and locate the GitHub Repository
+Under the repository name, click "Clone or download".
+To clone the repository using HTTPS, under "Clone with HTTPS", copy the link.
+Open Git Bash
+Change the current working directory to the location where you want the cloned directory to be made.
+Type git clone, and then paste the URL you copied in Step 3.
+Press Enter. Your local clone will be created.
+
+## Credits
+
+### Code
+
+  
+### Content
+
+
+### Media
+
+
+### Acknowledgements

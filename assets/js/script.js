@@ -1,14 +1,15 @@
 let myQuestions = [
-    { question: "",
-      options: {}
+    {
+        question: "",
+        options: {}
       correct
-]
-beginQuiz() {};
+];
+beginQuiz() { };
 
-correctAnswer() {};
+correctAnswer() { };
 
-incorrectAnswer() {};
+incorrectAnswer() { };
 
-scoreTally() {};
+scoreTally() { };
 
-finalScore() {};
+finalScore() { };
