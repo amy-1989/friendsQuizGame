@@ -9,22 +9,30 @@
   </head>
   <body>
     <div class="logo"></div>
-    <div class="popUp">
-      <h1>How You Doin'!</h1>
-      <p>Welcome to the Friends Tv Show Trivia Game!</p>
-      <p>Do you have what it takes to score 10/10?</p>
-      <button class="btn" type="submit">Click to Begin</button>
+    <div class="popUp" id="popUp">
+      <h1>How You Doin'! Welcome to the Friends Tv Show Trivia Game!</h1>
+      <div class="controls">
+        <button class="playBtn btn" id="playBtn">Play</button>
+        <button class="playGuestBtn btn" id="playGuestBtn">
+          Play as Guest
+        </button>
+        <button class="instructionBtn btn" id="instructionBtn">
+          Instructions
+        </button>
+        <button class="scoresBtn btn" id="scoresBtn">Leaderboard</button>
+      </div>
     </div>
-    <div class="quizArea">
-      <span class="question"></span>
-      <ul>
-        <li class="options"></li>
-        <li class="options"></li>
-        <li class="options"></li>
-        <li class="options"></li>
+    <div class="quizArea hide" id="quizArea">
+      <span class="questions" id="question">Question</span>
+      <ul class="answerBtns" id="answerBtns">
+        <li class="options btn"><button></button></li>
+        <li class="options btn"><button></button></li>
+        <li class="options btn"><button></button></li>
+        <li class="options btn"><button></button></li>
       </ul>
       <span class="score">Current Score: 0</span>
     </div>
-    <script src="assets/js/script.js"></script>
+    <script defer type="module" src="assets/js/script.js"></script>
+    <script type="module" src="assets/js/questions.js"></script>
   </body>
 </html>
