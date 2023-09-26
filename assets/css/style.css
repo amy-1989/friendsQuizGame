@@ -48,11 +48,11 @@ p {
     border-radius: 5px;
     box-shadow: 0 0 10px 2px;
     font-weight: 700;
-    margin: auto;
+    margin: 0 auto;
     margin-top: 16px;
 }
 
-.options {
+#answer {
     height: 10vh;
     width: 40vw;
     border: 1px solid black;
@@ -63,12 +63,6 @@ p {
     box-shadow: 0 0 10px 2px;
     gap: 10px;
     color: black;
-}
-
-ul {
-    list-style-type: none;
-    width: 40vw;
-    padding: 0;
 }
 
 .score {
@@ -110,6 +104,14 @@ ul {
 
 .hide {
     display: none;
+}
+
+.correct {
+    background-color: green;
+}
+
+.wrong {
+    background-color: red;
 }
 
 @media screen and (max-width: 720px) {

@@ -13,9 +13,6 @@
       <h1>How You Doin'! Welcome to the Friends Tv Show Trivia Game!</h1>
       <div class="controls">
         <button class="playBtn btn" id="playBtn">Play</button>
-        <button class="playGuestBtn btn" id="playGuestBtn">
-          Play as Guest
-        </button>
         <button class="instructionBtn btn" id="instructionBtn">
           Instructions
         </button>
@@ -24,12 +21,9 @@
     </div>
     <div class="quizArea hide" id="quizArea">
       <span class="questions" id="question">Question</span>
-      <ul class="answerBtns" id="answerBtns">
-        <li class="options btn"><button></button></li>
-        <li class="options btn"><button></button></li>
-        <li class="options btn"><button></button></li>
-        <li class="options btn"><button></button></li>
-      </ul>
+      <span class="answerBtns" id="answerBtns">
+      </span>
+      <button id="nextBtn" class="btn">Next</button>
       <span class="score">Current Score: 0</span>
     </div>
     <script defer type="module" src="assets/js/script.js"></script>
