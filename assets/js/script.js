@@ -15,6 +15,7 @@ let scoreElement = parseInt(document.getElementById('score').innerText);
 let randomiseQuestions, currentQuestionIndex;
 
 playButton.addEventListener('click', beginQuiz);
+instructionButton.addEventListener('click', instructions);
 
 //to increment the questions and load the next question when next button is clicked
 nextButton.addEventListener('click', () => {
@@ -27,33 +28,38 @@ nextButton.addEventListener('click', () => {
         playButton.innerText = 'Play Again';
         playButton.classList.remove('hide');
         document.getElementById('score').innerText = 0;
+        instructionNote.classList.add('hide');
     }
 });
-//this eventlistener is causing my instructions and leaderboard buttons to disappear
-instructionButton.addEventListener('click', instructions ());
 
 function beginQuiz() {
     console.log('Quiz started');
+
     //to hide welcome page and display the quiz game section
+
     welcomePage.classList.add('hide');
     quizArea.classList.remove('hide');
+
     // to ensure the game generates questions at random for each playthrough
+
     randomiseQuestions = myQuestions.sort(() => Math.random() - .5);
     currentQuestionIndex = 0;
     setNextQuestion();
 };
-
+//resets question area and loads the next random question
 function setNextQuestion() {
     resetState();
     displayQuestion(randomiseQuestions[currentQuestionIndex]);
 }
 
+//display the question
 function displayQuestion(questions) {
-    //display the question
     questionElement.innerText = questions.question;
 
     //display the answers
     questions.answers.forEach(answer => {
+
+        //creates the answer buttons
         let button = document.createElement('button');
         button.innerText = answer.text;
         button.classList.add('btn');
@@ -64,9 +70,14 @@ function displayQuestion(questions) {
         }
         button.addEventListener('click', selectAnswer);
         answerButtonsElement.appendChild(button);
-    });
-}
 
+        //disable the button after user makes a choice
+        button.addEventListener('click', () => button.disabled = true);
+            
+    });
+    
+}
+//resets the question and answer area
 function resetState() {
     nextButton.classList.add('hide');
     while (answerButtonsElement.firstChild) {
@@ -79,17 +90,16 @@ function selectAnswer(e) {
     const correct = selectedButton.dataset.correct;
 
     //to increment the score for correct answers
-    if(correct) {
+    if (correct) {
         document.getElementById('score').innerText = ++scoreElement;
     }
-    //convert answer buttons into an array to be able to loop through and add styles depending on correct status
+    //convert answer buttons into an array
     Array.from(answerButtonsElement.children).forEach(button => {
         setStatusCLass(button, button.dataset.correct);
     });
 
     //to show the next button
     nextButton.classList.remove('hide');
-
 }
 
 //to add styles dependent on selected correct or incorrect answer
@@ -101,19 +111,21 @@ function setStatusCLass(element, correct) {
         element.classList.add('wrong');
     }
 }
-
+//removes previous class selections of correct or wrong
 function clearStatusCLass(element) {
     element.classList.remove('correct');
     element.classList.remove('wrong');
 }
-//to display instructions--throwing a null error
-function instructions () {
+// to display the instructions page
+function instructions() {
     leaderboardButton.classList.add('hide');
     instructionButton.classList.add('hide');
     welcome.classList.add('hide');
     instructionNote.classList.remove('hide');
-}
+    console.log(instructions);
+    }
+
 
 function finalScore() {
-
- };
+    
+};
