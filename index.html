@@ -8,30 +8,56 @@
     <title>Friends-The One with the Quiz</title>
   </head>
   <body>
-    <div class="logo"></div>
-    <div class="popUp" id="popUp">
-      <h1 id="text">
+    <header>
+        <div class="logo">
+        </div>
+    </header>
+    <section>
+     <div class="popUp" id="popUp">
+          <h1 id="text">
         How You Doin'! Welcome to the Friends Tv Show Trivia Game!
-      </h1>
-      <h1 id="instructionNote" class="hide">
+          </h1>
+          <h1 id="instructionNote" class="hide">
         "Click Play button to begin. Choose one answer from the four multiple
         choice questions. Answers will change to green for correct, red for
         incorrect. Click Next to move onto the next question. At the end of the
         quiz you will receive your final score and the option to be added to the
         leaderboard. Good Luck!"
-      </h1>
-      <div class="controls">
-        <button class="playBtn btn" id="playBtn">Play</button>
-        <button class="instructionBtn btn" id="instructionBtn"></button>
-        <button class="scoresBtn btn" id="scoresBtn">Leaderboard</button>
-      </div>
+          </h1> 
+          <div id="end" class="finalScore hide">
+            <h1 id="EndScore">0</h1>
+            <form class="end-form-container">
+                <h2 id="end-text">Enter your username below to save your score!</h2>
+                <input type="text" name="name" id="username" placeholder="Enter your username">
+                <button class="btn hide" id="saveScoreBtn" type="submit">Save</button>
+            </form>
+        </div>
+        <div class="controls">
+          <button class="playBtn btn" id="playBtn">Play</button>
+          <button class="instructionBtn btn" id="instructionBtn"></button>
+          <button class="scoresBtn btn" id="scoresBtn">Leaderboard</button>
+        </div>
+     </div>   
+    </section>
+    <section>
+        <div class="quizArea hide" id="quizArea">
+          <span class="questions" id="question">Question</span>
+          <span class="answerBtns" id="answerBtns"> </span>
+          <button id="nextBtn" class="btn">Next</button>
+          <span class="score" id="score">0</span>
+        </div>
+    </section>
+    <section>
+        
+    </section>
+    <section>
+        <div id="leaderboard" class="highScores hide">
+            <h1 id="endScore">Leaderboard</h1>
+            <ul id="highScoresList"></ul>
+
     </div>
-    <div class="quizArea hide" id="quizArea">
-      <span class="questions" id="question">Question</span>
-      <span class="answerBtns" id="answerBtns"> </span>
-      <button id="nextBtn" class="btn">Next</button>
-      <span class="score" id="score">0</span>
-    </div>
+
+     </div></section>
     <script defer type="module" src="assets/js/script.js"></script>
     <script type="module" src="assets/js/questions.js"></script>
   </body>

@@ -1,4 +1,4 @@
-let myQuestions = [
+export let myQuestions = [
     {
         question: "What is Monica's father's pet name for her?",
         answers: [{ text: "Little Harmonica", correct: true },
@@ -351,4 +351,3 @@ let myQuestions = [
     },
 ];
 
-export { myQuestions };

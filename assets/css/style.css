@@ -52,19 +52,6 @@ p {
     margin-top: 16px;
 }
 
-#answer {
-    height: 10vh;
-    width: 40vw;
-    border: 1px solid black;
-    font-weight: 400;
-    display: inline-flex;
-    margin: auto;
-    border-radius: 5px;
-    box-shadow: 0 0 10px 2px;
-    gap: 10px;
-    color: black;
-}
-
 .score {
     height: fit-content;
     width: fit-content;
