@@ -16,7 +16,7 @@ body {
 }
 
 .logo {
-    background: url("../images/friends-logo.jpg") no-repeat center center;
+    background: url("../images/friends-logo.webp") no-repeat center center;
     background-size: contain;
     width: 80vw;
     height: 20vh;
