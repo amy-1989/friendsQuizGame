@@ -11,22 +11,19 @@ const leaderboardButton = document.getElementById('scoresBtn');
 const instructionNote = document.getElementById('instructionNote');
 const welcome = document.getElementById('text');
 const saveScoreBtn = document.getElementById('saveScoreBtn');
-const highScoresList = document.getElementById('highScoresList');
-//const highScores = JSON.parse(localstorage.getItem('highscores')|| [];
-const username = document.getElementById('username');
 const finalScore = document.getElementById('end');
-const mostRecentScore = document.getElementById('mostRecentScore');
-const leaderboard = document.getElementById('leaderboard');
-
 
 let scoreElement = parseInt(document.getElementById('score').innerText);
-let randomiseQuestions, currentQuestionIndex;
+let randomiseQuestions;
+let currentQuestionIndex;
 
 document.addEventListener('DOMContentLoaded', (e) => {
     playButton.addEventListener('click', beginQuiz);
     instructionButton.addEventListener('click', instructions);
 
-    //to increment the questions and load the next question when next button is clicked
+    /**
+     * to increment the questions and load the next question when next button is clicked
+     */
     nextButton.addEventListener('click', () => {
         currentQuestionIndex++;
         if (currentQuestionIndex < 10) {
@@ -36,6 +33,11 @@ document.addEventListener('DOMContentLoaded', (e) => {
         }
     });
 
+    saveScoreBtn.addEventListener( 'click', leaderboard());
+
+    /**
+     * begin the quiz game
+     */
     function beginQuiz() {
         console.log('Quiz started');
 
@@ -44,29 +46,34 @@ document.addEventListener('DOMContentLoaded', (e) => {
         welcomePage.classList.add('hide');
         quizArea.classList.remove('hide');
 
-        // to ensure the game generates questions at random for each playthrough
-        //function shuffleArray(array) {
-        // for (let i = array.length - 1; i > 0; i--) {
-        //     const j = Math.floor(Math.random() * (i + 1));
-        //   [array[i], array[j]] = [array[j], array[i]];
-        // }
-        // }
-
-        // Randomize the quiz questions (including correct answers)
-        // randomiseQuestions = shuffleArray(myQuestions);
-        randomiseQuestions = myQuestions.sort(() => Math.random() - .5);
+        // to ensure the game generates questions at random for each playthrough        
+        // randomiseQuestions = myQuestions.sort(() => Math.random() - .5); (commented out for testing)
         currentQuestionIndex = 0;
         setNextQuestion();
     };
-    //})
-    //resets question area and loads the next random question
-    function setNextQuestion() {
-        resetState();
-        displayQuestion(randomiseQuestions[currentQuestionIndex]);
 
+    /**
+     * to randomise the questions
+     */
+    function shuffleArray(array) {
+        for (let i = array.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [array[i], array[j]] = [array[j], array[i]];
+        }
     }
 
-    //display the question
+    /**
+     * resets question area and loads the next random question
+     * */
+    function setNextQuestion() {
+        resetState();
+        randomiseQuestions = shuffleArray(myQuestions);
+        displayQuestion(randomiseQuestions[currentQuestionIndex]);
+    }
+
+    /**
+     * display the question
+     */
     function displayQuestion(questions) {
         questionElement.innerText = questions.question;
 
@@ -91,7 +98,10 @@ document.addEventListener('DOMContentLoaded', (e) => {
         });
 
     }
-    //resets the question and answer area
+
+    /**
+     * resets the question and answer area
+     */
     function resetState() {
         nextButton.classList.add('hide');
         while (answerButtonsElement.firstChild) {
@@ -113,7 +123,9 @@ document.addEventListener('DOMContentLoaded', (e) => {
         });
     }
 
-    //to add styles dependent on selected correct or incorrect answer
+    /**
+     * to add styles dependent on selected correct or incorrect answer
+     */
     function setStatusCLass(element, correct) {
         clearStatusCLass(element);
         if (correct) {
@@ -122,12 +134,16 @@ document.addEventListener('DOMContentLoaded', (e) => {
             element.classList.add('wrong');
         }
     }
-    //removes previous class selections of correct or wrong
+    /**
+     * removes previous class selections of correct or wrong
+     */
     function clearStatusCLass(element) {
         element.classList.remove('correct');
         element.classList.remove('wrong');
     }
-    // to display the instructions page
+    /**
+     * to display the instructions page
+     */
     function instructions() {
         leaderboardButton.classList.add('hide');
         instructionButton.classList.add('hide');
@@ -135,14 +151,16 @@ document.addEventListener('DOMContentLoaded', (e) => {
         instructionNote.classList.remove('hide');
         console.log(instructions);
     }
-
+    /**
+     * to display the end final score page
+     */
     function endPage() {
-        welcomePage.classList.remove('hide')
+        welcomePage.classList.remove('hide');
         quizArea.classList.add('hide');
         playButton.innerText = 'Play Again';
         playButton.classList.remove('hide');
         //scoreElement = 0;
-       // document.getElementById('score').innerText = 0;
+        // document.getElementById('score').innerText = 0;
         instructionNote.classList.add('hide');
         saveScoreBtn.classList.remove('hide');
         finalScore.classList.remove('hide');
@@ -150,35 +168,52 @@ document.addEventListener('DOMContentLoaded', (e) => {
         instructionButton.classList.add('hide');
         leaderboard.classList.remove('hide');
         console.log('endpage function');
-        finalScore.innerText=`Well Done! You have scored ${scoreElement}!`;
-
+        finalScore.innerText = `Well Done! You have scored ${scoreElement}!`;
     }
-/**function finalScore() {
-    save.classList.remove('hide');
-    let highScores = localStorage.getItem('highscores') ||[]
-    finalScore.innerText = mostRecentScore
-    username.addEventListener('keyup', ()=>{
-        saveScoreBtn.disabled = !username.value
-    })
-    function saveHighScore(e) {
-        e.preventDefault()
 
-        let score = {
-            score: mostRecentScore,
-            name: username.value
+    function leaderboard() {
+        const numberOfHighScores = 3;
+        const highScoresVariable = 'highScores';
+
+        const highScoreString = localStorage.getItem(highScoresVariable);
+        const highScores = JSON.parse(highScoreString) ?? [];
+        
+        //checks the lowest score on the board to see if a user has scored a high score
+        const lowestScore = highScores[numberOfHighScores - 1]?.score??0;
+        
+        if(scoreElement > lowestScore) {
+            saveHighScore(scoreElement, highScores);
+            showHighScores();
         }
-        highScores.push(score)
-        highScores.sort((a,b) => {
-            return b.score - a.score
-        })
+        function saveHighScore(scoreElement, highScores) {
+        const name = prompt('You got a high score! Enter name:');
+        const newScore = {scoreElement, name};
 
-        highScores.splice(5)
+        //adds to list
+        highScores.push(newScore);
 
-        localStorage.setItem('highScores', 0)
+        //sort the list
+        highScores.sort((a,b)=> b.scoreElement-a.scoreElement);
+
+        //selects a new list
+        highScores.splice(numberOfHighScores);
+
+        //save to local storage
+        localStorage.setItem(highScores, JSON.stringify(highScores));
+
+        //retrieve the scores from local storage and add list items to leaderboard innerHTML
+        const highScoreList = document.getElementById('highScores');
+
+            highScoreList.innerHTML = highScores.map((scoreElement) => `<li>${scoreElement.scoreElement} - ${scoreElement.name}`)
+             
+        }
+
+        function showHighScores(){
+            highScoreList.innerHTML = highScores.map((scoreElement) => `<li>${scoreElement.scoreElement} - ${scoreElement.name}`).join('');
+        }
+        }
+
+    
+
     }
-    save.addEventListener('click', saveHighScore(e))
-};
-
-highScoresList.innerHTML = highScores.map(score =>{ 
-    return `<li class-"highScore">${score.name} - ${score.score}</li>`
-}).join('');}) */})
+);
