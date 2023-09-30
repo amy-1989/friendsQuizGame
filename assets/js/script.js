@@ -10,8 +10,7 @@ const answerButtonsElement = document.getElementById('answerBtns');
 const leaderboardButton = document.getElementById('scoresBtn');
 const instructionNote = document.getElementById('instructionNote');
 const welcome = document.getElementById('text');
-const saveScoreBtn = document.getElementById('saveScoreBtn');
-const finalScore = document.getElementById('end');
+const finalScore = document.getElementById('finalScore');
 
 let scoreElement = parseInt(document.getElementById('score').innerText);
 let randomiseQuestions;
@@ -29,11 +28,9 @@ document.addEventListener('DOMContentLoaded', (e) => {
         if (currentQuestionIndex < 10) {
             setNextQuestion();
         } else {
-            endPage();
+            endGame();
         }
     });
-
-    saveScoreBtn.addEventListener( 'click', leaderboard());
 
     /**
      * begin the quiz game
@@ -59,6 +56,7 @@ document.addEventListener('DOMContentLoaded', (e) => {
         for (let i = array.length - 1; i > 0; i--) {
             const j = Math.floor(Math.random() * (i + 1));
             [array[i], array[j]] = [array[j], array[i]];
+            return array;
         }
     }
 
@@ -83,7 +81,7 @@ document.addEventListener('DOMContentLoaded', (e) => {
             //creates the answer buttons
             let button = document.createElement('button');
             button.innerText = answer.text;
-            button.classList.add('btn');
+            button.classList.add('answerButton');
 
             //check if the answer selected is correct
             if (answer.correct) {
@@ -154,21 +152,21 @@ document.addEventListener('DOMContentLoaded', (e) => {
     /**
      * to display the end final score page
      */
-    function endPage() {
+    function endGame() {
         welcomePage.classList.remove('hide');
         quizArea.classList.add('hide');
         playButton.innerText = 'Play Again';
         playButton.classList.remove('hide');
-        //scoreElement = 0;
-        // document.getElementById('score').innerText = 0;
+        scoreElement = 0;
+        document.getElementById('score').innerText = 0;
         instructionNote.classList.add('hide');
-        saveScoreBtn.classList.remove('hide');
         finalScore.classList.remove('hide');
         welcome.classList.add('hide');
         instructionButton.classList.add('hide');
         leaderboard.classList.remove('hide');
         console.log('endpage function');
         finalScore.innerText = `Well Done! You have scored ${scoreElement}!`;
+        leaderboard();
     }
 
     function leaderboard() {
@@ -212,8 +210,5 @@ document.addEventListener('DOMContentLoaded', (e) => {
             highScoreList.innerHTML = highScores.map((scoreElement) => `<li>${scoreElement.scoreElement} - ${scoreElement.name}`).join('');
         }
         }
-
-    
-
     }
 );
