@@ -31,11 +31,23 @@
           <h1 class="finalScore hide" id="finalScore">
             0
           </h1>
-    
+        <!--Modal Box-->
+        <div id="myModal" class="modal hide">
+            <div class="modalContent">
+                <h2>You got a high score!</h2>
+                <label for="username">Enter Username</label>
+                <input id="username" class="username" type="text" placeholder="Enter your username">
+                <button id="saveBtn" class="btn" type="submit" onClick="saveHighScore(event)" disabled>Save</button>
+            </div> </div>
+        <!--Leaderboard-->
+        <div id="leaderboard" class="leaderboard hide">
+            <h1>Leaderboard</h1>
+            <ol id="highScoresList"></ol>
+        </div>
         <!--Game Buttons-->  
         <div class="controls">
           <button class="playBtn btn" id="playBtn">Play</button>
-          <button class="instructionBtn btn" id="instructionBtn"></button>
+          <button class="instructionBtn btn" id="instructionBtn">Instructions</button>
           <button class="scoresBtn btn" id="scoresBtn">Leaderboard</button>
         </div>
      </div>   
@@ -44,19 +56,14 @@
         <!--Quiz Game Section-->
         <div class="quizArea hide" id="quizArea">
           <span class="questions" id="question">Question</span>
-          <span class="answerBtns" id="answerBtns"> </span>
+          <span class="answerBtns" id="answerBtns"></span>
           <button id="nextBtn" class="btn">Next</button>
           <span class="score" id="score">0</span>
         </div>
     </section>
     <section>
-        <!--Leaderboard-->
-        <div id="leaderboard" class="highScores hide">
-            <h1 id="endScore">Leaderboard</h1>
-            <ol id="highScores"></ol>
-        </div>
+        
     </section>
     <script defer type="module" src="assets/js/script.js"></script>
-    <script type="module" src="assets/js/questions.js"></script>
   </body>
 </html>

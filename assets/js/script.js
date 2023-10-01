@@ -3,6 +3,7 @@ import { myQuestions } from './questions.js';
 const playButton = document.getElementById('playBtn');
 const instructionButton = document.getElementById('instructionBtn');
 const nextButton = document.getElementById('nextBtn');
+const saveScoreButton = document.getElementById('saveBtn');
 const welcomePage = document.getElementById('popUp');
 const quizArea = document.getElementById('quizArea');
 const questionElement = document.getElementById('question');
@@ -11,105 +12,123 @@ const leaderboardButton = document.getElementById('scoresBtn');
 const instructionNote = document.getElementById('instructionNote');
 const welcome = document.getElementById('text');
 const finalScore = document.getElementById('finalScore');
+const mostRecentScore = localStorage.getItem('mostRecentScore');
+const username = document.getElementById('username');
+const leaderboard = document.getElementById('leaderboard');
 
 let scoreElement = parseInt(document.getElementById('score').innerText);
+const highScoreList = document.getElementById('highScoresList');
+const maxHighScores = 3;
+const highScoreModal = document.getElementById("myModal");
+
+const score = {
+        score: mostRecentScore,
+        name: username.value
+    }
+const highScores = JSON.parse(localStorage.getItem('highScores')) || [];
+
+scoreElement = mostRecentScore;
+username.addEventListener('keyup', () => {
+    saveScoreButton.disabled = !username.value
+})
+
+
 let randomiseQuestions;
 let currentQuestionIndex;
 
-document.addEventListener('DOMContentLoaded', (e) => {
-    playButton.addEventListener('click', beginQuiz);
-    instructionButton.addEventListener('click', instructions);
+playButton.addEventListener('click', beginQuiz);
+instructionButton.addEventListener('click', instructions);
+saveScoreButton.addEventListener('click', saveHighScore);
+leaderboardButton.addEventListener('click', displayLeaderboard);
 
-    /**
-     * to increment the questions and load the next question when next button is clicked
-     */
-    nextButton.addEventListener('click', () => {
+/**
+* to increment the questions and load the next question when next button is clicked
+*/
+nextButton.addEventListener('click', () => {
         currentQuestionIndex++;
         if (currentQuestionIndex < 10) {
             setNextQuestion();
         } else {
             endGame();
         }
-    });
+ });
 
-    /**
-     * begin the quiz game
-     */
-    function beginQuiz() {
-        console.log('Quiz started');
+/**
+ *  * begin the quiz game
+*/
+function beginQuiz() {
+    console.log('Quiz started');
 
-        //to hide welcome page and display the quiz game section
+    //to hide welcome page and display the quiz game section
+    welcomePage.classList.add('hide');
+    quizArea.classList.remove('hide');
+    currentQuestionIndex = 0;
+    scoreElement = 0;
+    document.getElementById('score').innerText = 0;
+    setNextQuestion();
+};
 
-        welcomePage.classList.add('hide');
-        quizArea.classList.remove('hide');
-
-        // to ensure the game generates questions at random for each playthrough        
-        // randomiseQuestions = myQuestions.sort(() => Math.random() - .5); (commented out for testing)
-        currentQuestionIndex = 0;
-        scoreElement = 0;
-        document.getElementById('score').innerText = 0;
-        setNextQuestion();
-    };
-
-    /**
-     * to randomise the questions
-     */
-    function shuffleArray(array) {
-        for (let i = array.length - 1; i > 0; i--) {
+/**
+* to randomise the questions
+*/
+function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+    
             const j = Math.floor(Math.random() * (i + 1));
             [array[i], array[j]] = [array[j], array[i]];
-            return array;
-        }
     }
+    return array;
+}
 
-    /**
-     * resets question area and loads the next random question
-     * */
-    function setNextQuestion() {
-        resetState();
-        randomiseQuestions = shuffleArray(myQuestions);
-        displayQuestion(randomiseQuestions[currentQuestionIndex]);
-    }
+/**
+* resets question area and loads the next random question
+*/
+function setNextQuestion() {
+    resetState();
+    randomiseQuestions = shuffleArray(myQuestions);
+    displayQuestion(randomiseQuestions[currentQuestionIndex]);
+}
 
-    /**
-     * display the question
-     */
-    function displayQuestion(questions) {
-        questionElement.innerText = questions.question;
+/**
+* display the question
+*/
+function displayQuestion(questions) {
+    questionElement.innerText = questions.question;
 
-        //display the answers
-        questions.answers.forEach(answer => {
+    //display the answers
+    shuffleArray(questions.answers);
+    questions.answers.forEach(answer => {
 
-            //creates the answer buttons
-            let button = document.createElement('button');
-            button.innerText = answer.text;
-            button.classList.add('answerButton');
+         //creates the answer buttons
+        let button = document.createElement('button');
+        button.innerText = answer.text;
+        button.classList.add('answerButton');
 
-            //check if the answer selected is correct
-            if (answer.correct) {
-                button.dataset.correct = answer.correct;
+        //check if the answer selected is correct
+        if (answer.correct) {
+              button.dataset.correct = answer.correct;
             }
-            button.addEventListener('click', selectAnswer);
-            answerButtonsElement.appendChild(button);
+        button.addEventListener('click', selectAnswer);
+        answerButtonsElement.appendChild(button);
 
-            //disable the buttons after user makes a choice
-            answerButtonsElement.addEventListener('click', () => button.disabled = true,
-                nextButton.classList.remove('hide'));
-        });
+        //disable the buttons after user makes a choice
+        answerButtonsElement.addEventListener('click', () => button.disabled = true,
+        nextButton.classList.remove('hide'));
+    });
 
-    }
+}
 
     /**
      * resets the question and answer area
      */
-    function resetState() {
+function resetState() {
         nextButton.classList.add('hide');
         while (answerButtonsElement.firstChild) {
             answerButtonsElement.removeChild(answerButtonsElement.firstChild);
         }
     }
 
-    function selectAnswer(e) {
+function selectAnswer(e) {
         const selectedButton = e.target;
         const correct = selectedButton.dataset.correct;
 
@@ -126,7 +145,7 @@ document.addEventListener('DOMContentLoaded', (e) => {
     /**
      * to add styles dependent on selected correct or incorrect answer
      */
-    function setStatusCLass(element, correct) {
+function setStatusCLass(element, correct) {
         clearStatusCLass(element);
         if (correct) {
             element.classList.add('correct');
@@ -137,14 +156,14 @@ document.addEventListener('DOMContentLoaded', (e) => {
     /**
      * removes previous class selections of correct or wrong
      */
-    function clearStatusCLass(element) {
+function clearStatusCLass(element) {
         element.classList.remove('correct');
         element.classList.remove('wrong');
     }
     /**
      * to display the instructions page
      */
-    function instructions() {
+function instructions() {
         leaderboardButton.classList.add('hide');
         instructionButton.classList.add('hide');
         welcome.classList.add('hide');
@@ -154,7 +173,7 @@ document.addEventListener('DOMContentLoaded', (e) => {
     /**
      * to display the end final score page
      */
-    function endGame() {
+function endGame() {
         welcomePage.classList.remove('hide');
         quizArea.classList.add('hide');
         playButton.innerText = 'Play Again';
@@ -166,50 +185,35 @@ document.addEventListener('DOMContentLoaded', (e) => {
         leaderboardButton.classList.remove('hide');
         console.log('endpage function');
         finalScore.innerText = `Well Done! You have scored ${scoreElement}!`;
-        leaderboard();
+        highScoreModal.classList.remove('hide');
     }
+/**
+ * to save your score to the leaderboard
+ */    
+function saveHighScore(e) {
+    e.preventDefault()
 
-    function leaderboard() {
-        console.log('leaderboard function called');
-        const numberOfHighScores = 3;
-        const highScoresVariable = 'highScores';
+    highScores.push(score);
 
-        const highScoreString = localStorage.getItem(highScoresVariable);
-        const highScores = JSON.parse(highScoreString) ?? [];
-        
-        //checks the lowest score on the board to see if a user has scored a high score
-        const lowestScore = highScores[numberOfHighScores - 1]?.score??0;
-        
-        if(scoreElement > lowestScore) {
-            saveHighScore(scoreElement, highScores);
-            showHighScores();
-        }
-        function saveHighScore(scoreElement, highScores) {
-        const name = prompt('You got a high score! Enter name:');
-        const newScore = {scoreElement, name};
+    highScores.sort((a,b) => {
+        return b.score - a.score
+    })
 
-        //adds to list
-        highScores.push(newScore);
+    highScores.splice(3)
 
-        //sort the list
-        highScores.sort((a,b)=> b.scoreElement-a.scoreElement);
+    localStorage.setItem('highScores', JSON.stringify(highScores))
+    window.location.assign('/')
 
-        //selects a new list
-        highScores.splice(numberOfHighScores);
+    highScoresList.innerHTML = highScores.map(score => {
+    return `<li class="high-score">${score.name}-${score.score}`
+    }).join();
+}
 
-        //save to local storage
-        localStorage.setItem(highScores, JSON.stringify(highScores));
-
-        //retrieve the scores from local storage and add list items to leaderboard innerHTML
-        const highScoreList = document.getElementById('highScores');
-
-            highScoreList.innerHTML = highScores.map((scoreElement) => `<li>${scoreElement.scoreElement} - ${scoreElement.name}`)
-             
-        }
-
-        function showHighScores(){
-            highScoreList.innerHTML = highScores.map((scoreElement) => `<li>${scoreElement.scoreElement} - ${scoreElement.name}`).join('');
-        }
-        }
-    }
-);
+/**
+ * to display the leaderboard
+ */
+function displayLeaderboard () {
+    leaderboard.classList.remove('hide');
+    instructionBtn.classList.add('hide');
+    leaderboardButton.classList.add('hide');
+}
