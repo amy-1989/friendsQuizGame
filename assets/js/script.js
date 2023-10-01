@@ -46,6 +46,8 @@ document.addEventListener('DOMContentLoaded', (e) => {
         // to ensure the game generates questions at random for each playthrough        
         // randomiseQuestions = myQuestions.sort(() => Math.random() - .5); (commented out for testing)
         currentQuestionIndex = 0;
+        scoreElement = 0;
+        document.getElementById('score').innerText = 0;
         setNextQuestion();
     };
 
@@ -157,19 +159,18 @@ document.addEventListener('DOMContentLoaded', (e) => {
         quizArea.classList.add('hide');
         playButton.innerText = 'Play Again';
         playButton.classList.remove('hide');
-        scoreElement = 0;
-        document.getElementById('score').innerText = 0;
         instructionNote.classList.add('hide');
         finalScore.classList.remove('hide');
         welcome.classList.add('hide');
         instructionButton.classList.add('hide');
-        leaderboard.classList.remove('hide');
+        leaderboardButton.classList.remove('hide');
         console.log('endpage function');
         finalScore.innerText = `Well Done! You have scored ${scoreElement}!`;
         leaderboard();
     }
 
     function leaderboard() {
+        console.log('leaderboard function called');
         const numberOfHighScores = 3;
         const highScoresVariable = 'highScores';
 
