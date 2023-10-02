@@ -20,29 +20,26 @@
         How You Doin'! Welcome to the Friends Tv Show Trivia Game!
           </h1>
         <!--Instructions Text-->  
-          <h2 id="instructionNote" class="hide">
-        "Click Play button to begin. <br> Choose one answer from the four multiple
+          <h2 id="instructionNote" class="hide instructionText">
+        Click Play button to begin. <br> Choose one answer from the four multiple
         choice questions. <br> Answers will change to green for correct, red for
         incorrect. <br> Click Next to move onto the next question. <br> At the end of the
         quiz you will receive your final score and the option to be added to the
-        leaderboard. <br> Good Luck!"
+        leaderboard. <br> Good Luck!
           </h2>
-        <!--Score Area-->   
-          <h1 class="finalScore hide" id="finalScore">
-            0
-          </h1>
+
         <!--Modal Box-->
         <div id="myModal" class="modal hide">
             <div class="modalContent">
-                <h2>You got a high score!</h2>
+                <h2 id="endGameResult">High Score</h2>
                 <label for="username">Enter Username</label>
                 <input id="username" class="username" type="text" placeholder="Enter your username">
-                <button id="saveBtn" class="btn" type="submit" onClick="saveHighScore(event)" disabled>Save</button>
+                <button id="saveBtn" class="modalbtn" disabled>Save</button>
             </div> </div>
         <!--Leaderboard-->
         <div id="leaderboard" class="leaderboard hide">
-            <h1>Leaderboard</h1>
-            <ol id="highScoresList"></ol>
+            <h1>High Scores</h1>
+            <ol id="highScoresList" class="highScore"></ol>
         </div>
         <!--Game Buttons-->  
         <div class="controls">
@@ -58,12 +55,10 @@
           <span class="questions" id="question">Question</span>
           <span class="answerBtns" id="answerBtns"></span>
           <button id="nextBtn" class="btn">Next</button>
-          <span class="score" id="score">0</span>
+          <span class="scoreArea" id="score">0</span>
         </div>
     </section>
-    <section>
-        
-    </section>
+    <footer></footer>
     <script defer type="module" src="assets/js/script.js"></script>
   </body>
 </html>

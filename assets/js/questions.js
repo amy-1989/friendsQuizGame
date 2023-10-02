@@ -1,12 +1,5 @@
 export let myQuestions = [
     {
-        question: "What is Monica's father's pet name for her?",
-        answers: [,
-        { text: "Tootsie", correct: false },
-        { text: "Big Harmonica", correct: false },
-        { text: "Little Mon-Mon", correct: false }]
-    },
-    {
         question: "In 'The One with the Proposal', who does Chandler call a 'big tree'?",
         answers: [{ text: "Richard", correct: true },
         { text: "Joey", correct: false },

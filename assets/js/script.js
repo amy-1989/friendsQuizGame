@@ -11,26 +11,25 @@ const answerButtonsElement = document.getElementById('answerBtns');
 const leaderboardButton = document.getElementById('scoresBtn');
 const instructionNote = document.getElementById('instructionNote');
 const welcome = document.getElementById('text');
-const finalScore = document.getElementById('finalScore');
-const mostRecentScore = localStorage.getItem('mostRecentScore');
+const mostRecentScore = localStorage.getItem('highScores');
 const username = document.getElementById('username');
 const leaderboard = document.getElementById('leaderboard');
-
+const result = document.getElementById('endGameResult');
 let scoreElement = parseInt(document.getElementById('score').innerText);
 const highScoreList = document.getElementById('highScoresList');
 const maxHighScores = 3;
 const highScoreModal = document.getElementById("myModal");
 
 const score = {
-        score: mostRecentScore,
-        name: username.value
-    }
+    score: mostRecentScore,
+    name: username.value
+};
 const highScores = JSON.parse(localStorage.getItem('highScores')) || [];
 
-scoreElement = mostRecentScore;
+
 username.addEventListener('keyup', () => {
-    saveScoreButton.disabled = !username.value
-})
+    saveScoreButton.disabled = !username.value;
+});
 
 
 let randomiseQuestions;
@@ -38,20 +37,24 @@ let currentQuestionIndex;
 
 playButton.addEventListener('click', beginQuiz);
 instructionButton.addEventListener('click', instructions);
-saveScoreButton.addEventListener('click', saveHighScore);
+saveScoreButton.addEventListener('click', function (e) {
+    saveHighScore(e);
+    highScoreModal.classList.add('hide');
+});
+
 leaderboardButton.addEventListener('click', displayLeaderboard);
 
 /**
 * to increment the questions and load the next question when next button is clicked
 */
 nextButton.addEventListener('click', () => {
-        currentQuestionIndex++;
-        if (currentQuestionIndex < 10) {
-            setNextQuestion();
-        } else {
-            endGame();
-        }
- });
+    currentQuestionIndex++;
+    if (currentQuestionIndex < 10) {
+        setNextQuestion();
+    } else {
+        endGame();
+    }
+});
 
 /**
  *  * begin the quiz game
@@ -62,6 +65,7 @@ function beginQuiz() {
     //to hide welcome page and display the quiz game section
     welcomePage.classList.add('hide');
     quizArea.classList.remove('hide');
+
     currentQuestionIndex = 0;
     scoreElement = 0;
     document.getElementById('score').innerText = 0;
@@ -73,9 +77,9 @@ function beginQuiz() {
 */
 function shuffleArray(array) {
     for (let i = array.length - 1; i > 0; i--) {
-    
-            const j = Math.floor(Math.random() * (i + 1));
-            [array[i], array[j]] = [array[j], array[i]];
+
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
     }
     return array;
 }
@@ -99,121 +103,121 @@ function displayQuestion(questions) {
     shuffleArray(questions.answers);
     questions.answers.forEach(answer => {
 
-         //creates the answer buttons
+        //creates the answer buttons
         let button = document.createElement('button');
         button.innerText = answer.text;
         button.classList.add('answerButton');
 
         //check if the answer selected is correct
         if (answer.correct) {
-              button.dataset.correct = answer.correct;
-            }
+            button.dataset.correct = answer.correct;
+        }
         button.addEventListener('click', selectAnswer);
         answerButtonsElement.appendChild(button);
 
         //disable the buttons after user makes a choice
         answerButtonsElement.addEventListener('click', () => button.disabled = true,
-        nextButton.classList.remove('hide'));
+            nextButton.classList.remove('hide'));
     });
 
 }
 
-    /**
-     * resets the question and answer area
-     */
+/**
+ * resets the question and answer area
+ */
 function resetState() {
-        nextButton.classList.add('hide');
-        while (answerButtonsElement.firstChild) {
-            answerButtonsElement.removeChild(answerButtonsElement.firstChild);
-        }
+    nextButton.classList.add('hide');
+    while (answerButtonsElement.firstChild) {
+        answerButtonsElement.removeChild(answerButtonsElement.firstChild);
     }
+}
 
 function selectAnswer(e) {
-        const selectedButton = e.target;
-        const correct = selectedButton.dataset.correct;
+    const selectedButton = e.target;
+    const correct = selectedButton.dataset.correct;
 
-        //to increment the score for correct answers
-        if (correct) {
-            document.getElementById('score').innerText = ++scoreElement;
-        }
-        //convert answer buttons into an array
-        Array.from(answerButtonsElement.children).forEach(button => {
-            setStatusCLass(button, button.dataset.correct);
-        });
+    //to increment the score for correct answers
+    if (correct) {
+        document.getElementById('score').innerText = ++scoreElement;
     }
+    //convert answer buttons into an array
+    Array.from(answerButtonsElement.children).forEach(button => {
+        setStatusCLass(button, button.dataset.correct);
+    });
+}
 
-    /**
-     * to add styles dependent on selected correct or incorrect answer
-     */
+/**
+ * to add styles dependent on selected correct or incorrect answer
+ */
 function setStatusCLass(element, correct) {
-        clearStatusCLass(element);
-        if (correct) {
-            element.classList.add('correct');
-        } else {
-            element.classList.add('wrong');
-        }
+    clearStatusCLass(element);
+    if (correct) {
+        element.classList.add('correct');
+    } else {
+        element.classList.add('wrong');
     }
-    /**
-     * removes previous class selections of correct or wrong
-     */
+}
+/**
+ * removes previous class selections of correct or wrong
+ */
 function clearStatusCLass(element) {
-        element.classList.remove('correct');
-        element.classList.remove('wrong');
-    }
-    /**
-     * to display the instructions page
-     */
+    element.classList.remove('correct');
+    element.classList.remove('wrong');
+}
+/**
+ * to display the instructions page
+ */
 function instructions() {
-        leaderboardButton.classList.add('hide');
-        instructionButton.classList.add('hide');
-        welcome.classList.add('hide');
-        instructionNote.classList.remove('hide');
-        console.log(instructions);
-    }
-    /**
-     * to display the end final score page
-     */
+    leaderboardButton.classList.add('hide');
+    instructionButton.classList.add('hide');
+    welcome.classList.add('hide');
+    instructionNote.classList.remove('hide');
+    console.log(instructions);
+}
+/**
+ * to display the end final score page
+ */
 function endGame() {
-        welcomePage.classList.remove('hide');
-        quizArea.classList.add('hide');
-        playButton.innerText = 'Play Again';
-        playButton.classList.remove('hide');
-        instructionNote.classList.add('hide');
-        finalScore.classList.remove('hide');
-        welcome.classList.add('hide');
-        instructionButton.classList.add('hide');
-        leaderboardButton.classList.remove('hide');
-        console.log('endpage function');
-        finalScore.innerText = `Well Done! You have scored ${scoreElement}!`;
-        highScoreModal.classList.remove('hide');
-    }
+    welcomePage.classList.remove('hide');
+    quizArea.classList.add('hide');
+    playButton.innerText = 'Play Again';
+    playButton.classList.remove('hide');
+    instructionNote.classList.add('hide');
+    welcome.classList.add('hide');
+    instructionButton.classList.add('hide');
+    leaderboardButton.classList.remove('hide');
+    leaderboard.classList.add('hide');
+    console.log('endpage function');
+    result.innerText = `Well Done! You have scored ${scoreElement}!`;
+    highScoreModal.classList.remove('hide');
+}
 /**
  * to save your score to the leaderboard
- */    
+ */
 function saveHighScore(e) {
-    e.preventDefault()
+    e.preventDefault();
 
     highScores.push(score);
 
-    highScores.sort((a,b) => {
-        return b.score - a.score
-    })
+    highScores.sort((a, b) => {
+        return b.score - a.score;
+    });
 
-    highScores.splice(3)
+    highScores.splice(3);
 
-    localStorage.setItem('highScores', JSON.stringify(highScores))
-    window.location.assign('/')
+    localStorage.setItem('highScores', JSON.stringify(highScores));
+    //window.location.assign('/')
 
-    highScoresList.innerHTML = highScores.map(score => {
-    return `<li class="high-score">${score.name}-${score.score}`
+    highScoreList.innerHTML = highScores.map(score => {
+        return `<li class="highScore">${score.name}-${score.score}`;
     }).join();
 }
 
 /**
  * to display the leaderboard
  */
-function displayLeaderboard () {
+function displayLeaderboard() {
     leaderboard.classList.remove('hide');
-    instructionBtn.classList.add('hide');
+    instructionButton.classList.add('hide');
     leaderboardButton.classList.add('hide');
 }

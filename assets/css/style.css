@@ -13,6 +13,10 @@ body {
     margin: 0;
     width: 100vw;
     height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 .logo {
@@ -29,7 +33,7 @@ p {
     font-size: 1.5em;
 }
 
-h2{
+h2 {
     font-size: 1em;
 }
 
@@ -54,9 +58,11 @@ h2{
     box-shadow: 0 0 10px 2px;
     font-weight: 700;
     margin: 0 auto;
-    margin-top: 16px;
+    margin-top: 20px;
+    margin-bottom: 20px;
     font-size: 1.5em;
     background-color: rgba(0, 0, 255, 0.336);
+
 }
 
 .answerBtns {
@@ -69,11 +75,15 @@ h2{
 
 }
 
+.btn {
+    margin-top: 20px;
+}
+
 .btn,
 .answerButton {
-    background-color: yellow;
+    background-color: rgb(255, 255, 0);
     color: black;
-    font-size: 2em;
+    font-size: 1.5em;
     box-shadow: 0 0 10px 2px;
     margin-top: 10px;
     border-radius: 5px;
@@ -82,15 +92,19 @@ h2{
 .answerButton {
     width: 60vw;
     margin: 0 auto;
-    margin-top: 16px;
-    background-color: rgba(183, 0, 255, 0.171);
+    margin-top: 5px;
+    margin-bottom: 5px;
+    background-color: rgba(183, 0, 255, 0.24);
 }
 
-.score {
+.scoreArea {
     height: fit-content;
     width: fit-content;
     margin: auto;
-    font-size: 1.5em;
+    font-size: 2em;
+    padding-top: 16px;
+    padding-bottom: 16px'
+
 }
 
 /* Welcome page section */
@@ -99,7 +113,7 @@ h2{
     background-color: purple;
     color: white;
     height: 60vh;
-    width: 60vw;
+    width: 80vw;
     margin: 0 auto;
     display: flex;
     align-content: center;
@@ -120,11 +134,11 @@ h2{
 
 /* styles for answer selections*/
 .correct {
-    background-color: green;
+    background-color: rgba(0, 128, 0, 0.658);
 }
 
 .wrong {
-    background-color: red;
+    background-color: rgba(255, 0, 0, 0.596);
 }
 
 .hide {
@@ -132,15 +146,60 @@ h2{
 }
 
 /* style the modal for save highscores */
-.myModal {
+.modal {
     border: 1px solid black;
     box-shadow: 0 0 10px 2px;
     border-radius: 5px;
+    background-color: white;
+}
+
+.modalContent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    color: black;
+}
+
+input {
+    display: flex;
+    background-color:rgba(183, 0, 255, 0.144);
+    color: black;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+.modalBtn {
+    display: flex;
+    background-color: blueviolet;
+    color: black;
+
+}
+
+.leaderboard {
+    border: 1px solid black;
+    border-radius: 5px;
+    background-color: white;
+    color: black;
+    width: 60vw;
+    margin: 0 auto;
+    box-shadow: 0 0 10px 2px;
+}
+
+.instructionText {
+    border: 1px solid black;
+    border-radius: 5px;
+    box-shadow: 0 0 10px 2px;
+    background-color: white;
+    color: black;
+    width: 60vw;
+
 }
 
 @media screen and (max-width: 720px) {
     .popUp {
-        height: 80vh;
+        height: 60vh;
         width: 80vw;
     }
 }
