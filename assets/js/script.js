@@ -11,7 +11,7 @@ const answerButtonsElement = document.getElementById('answerBtns');
 const leaderboardButton = document.getElementById('scoresBtn');
 const instructionNote = document.getElementById('instructionNote');
 const welcome = document.getElementById('text');
-const mostRecentScore = localStorage.getItem('highScores');
+const mostRecentScore = localStorage.getItem('mostRecentScore');
 const username = document.getElementById('username');
 const leaderboard = document.getElementById('leaderboard');
 const result = document.getElementById('endGameResult');
@@ -43,7 +43,6 @@ saveScoreButton.addEventListener('click', function (e) {
 });
 
 leaderboardButton.addEventListener('click', displayLeaderboard);
-
 /**
 * to increment the questions and load the next question when next button is clicked
 */
@@ -51,6 +50,7 @@ nextButton.addEventListener('click', () => {
     currentQuestionIndex++;
     if (currentQuestionIndex < 10) {
         setNextQuestion();
+        localStorage.setItem('mostRecentScore', scoreElement);
     } else {
         endGame();
     }
@@ -61,7 +61,6 @@ nextButton.addEventListener('click', () => {
 */
 function beginQuiz() {
     console.log('Quiz started');
-
     //to hide welcome page and display the quiz game section
     welcomePage.classList.add('hide');
     quizArea.classList.remove('hide');
@@ -206,7 +205,6 @@ function saveHighScore(e) {
     highScores.splice(3);
 
     localStorage.setItem('highScores', JSON.stringify(highScores));
-    //window.location.assign('/')
 
     highScoreList.innerHTML = highScores.map(score => {
         return `<li class="highScore">${score.name}-${score.score}`;
