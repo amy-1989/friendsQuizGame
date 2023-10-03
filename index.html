@@ -6,59 +6,70 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="assets/css/style.css" />
     <title>Friends-The One with the Quiz</title>
-    <link rel="icon" type="image/x-icon" href="documents/images/favicon.webp">
+    <link rel="icon" type="image/x-icon" href="documents/images/favicon.webp" />
   </head>
   <body>
     <header>
-        <div class="logo">
-        </div>
+      <div class="logo"></div>
     </header>
     <section>
-        <!--Welcome Page-->
-     <div class="popUp" id="popUp">
-          <h1 id="text">
-        How You Doin'! Welcome to the Friends Tv Show Trivia Game!
-          </h1>
-        <!--Instructions Text-->  
-          <h2 id="instructionNote" class="hide instructionText">
-        Click Play button to begin. <br> Choose one answer from the four multiple
-        choice questions. <br> Answers will change to green for correct, red for
-        incorrect. <br> Click Next to move onto the next question. <br> At the end of the
-        quiz you will receive your final score and the option to be added to the
-        leaderboard. <br> Good Luck!
-          </h2>
+      <!--Welcome Page-->
+      <div class="popUp" id="popUp">
+        <h1 id="text">
+          How You Doin'! Welcome to the Friends Tv Show Trivia Game!
+        </h1>
+        <!--Instructions Text-->
+        <h2 id="instructionNote" class="hide instructionText">
+          Click Play button to begin. <br />
+          Choose one answer from the four multiple choice questions. <br />
+          Answers will change to green for correct, red for incorrect. <br />
+          Click Next to move onto the next question. <br />
+          At the end of the quiz you will receive your final score and the
+          option to be added to the leaderboard. <br />
+          Good Luck!
+        </h2>
 
         <!--Modal Box-->
         <div id="myModal" class="modal hide">
-            <div class="modalContent">
-                <h2 id="endGameResult">High Score</h2>
-                <label for="username">Enter Username</label>
-                <input id="username" class="usernameBox" type="text" placeholder="Enter your username">
-                <button id="saveBtn" class="modalbtn" type="submit" disabled>Save</button>
-            </div> </div>
+          <div class="modalContent">
+            <h2 id="endGameResult">High Score</h2>
+            <label for="username">Enter Username</label>
+            <input
+              id="username"
+              class="usernameBox"
+              type="text"
+              placeholder="Enter your username"
+            />
+            <button id="saveBtn" class="modalbtn" type="submit" disabled>
+              Save
+            </button>
+          </div>
+        </div>
         <!--Leaderboard-->
         <div id="leaderboard" class="leaderboard hide">
-            <h1>High Scores</h1>
-            <ol id="highScoresList" class="highScore"></ol>
+          <h1>High Scores</h1>
+          <ol id="highScoresList" class="highScore"></ol>
         </div>
-        <!--Game Buttons-->  
+        <!--Game Buttons-->
         <div class="controls">
           <button class="playBtn btn" id="playBtn">Play</button>
-          <button class="instructionBtn btn" id="instructionBtn">Instructions</button>
+          <button class="instructionBtn btn" id="instructionBtn">
+            Instructions
+          </button>
           <button class="scoresBtn btn" id="scoresBtn">Leaderboard</button>
         </div>
-     </div>   
+      </div>
     </section>
     <section>
-        <!--Quiz Game Section-->
-        <div class="quizArea hide" id="quizArea">
-          <span class="questions" id="question">Question</span>
-          <span class="answerBtns" id="answerBtns"></span>
-          <button id="nextBtn" class="btn">Next</button>
-          <span class="scoreArea" id="score">0</span>
-        </div>
+      <!--Quiz Game Section-->
+      <div class="quizArea hide" id="quizArea">
+        <span class="questions" id="question">Question</span>
+        <span class="answerBtns" id="answerBtns"></span>
+        <button id="nextBtn" class="btn">Next</button>
+        <span class="scoreArea" id="score">0</span>
+      </div>
     </section>
     <footer></footer>
-    <script defer type="module" src="assets/js/script.js"></script>
+    <script defer src="assets/js/script.js"></script>
   </body>
 </html>

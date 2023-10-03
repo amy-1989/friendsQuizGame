@@ -1,5 +1,13 @@
 import { myQuestions } from "./questions.js";
 
+/**the code for this quiz was inspired by 
+ * WebDevSimplified youtube tutorial
+ */
+
+/**
+ * to target all relevant elements from the DOM
+ */
+
 const playButton = document.getElementById("playBtn");
 const instructionButton = document.getElementById("instructionBtn");
 const nextButton = document.getElementById("nextBtn");
@@ -18,26 +26,37 @@ let scoreElement = parseInt(document.getElementById("score").innerText);
 const highScoreList = document.getElementById("highScoresList");
 const maxHighScores = 3;
 const highScoreModal = document.getElementById("myModal");
-
 let score = {};
-
 const highScores = JSON.parse(localStorage.getItem("highScores")) || [];
+let randomiseQuestions;
+let currentQuestionIndex;
 
+/**
+ * 'keyup' Event Listener will prevent user from being able to save a score 
+ * without a username
+ */
 username.addEventListener("keyup", () => {
     saveScoreButton.disabled = !username.value;
 });
 
-let randomiseQuestions;
-let currentQuestionIndex;
-
+/**
+ * add 'click' Event Listeners to run the button functions
+ * playButton will start the game
+ * instructionButton will display how to play the game
+ * saveScoreButton will save the scores to leaderboard
+ * leaderboard will display the high scores 
+ */
 playButton.addEventListener("click", beginQuiz);
+
 instructionButton.addEventListener("click", instructions);
+
 saveScoreButton.addEventListener("click", function (e) {
     saveHighScore(e);
     highScoreModal.classList.add("hide");
 });
 
 leaderboardButton.addEventListener("click", displayLeaderboard);
+
 /**
  * to increment the questions and load the next question when next button is clicked
  */
@@ -46,23 +65,25 @@ nextButton.addEventListener("click", () => {
     if (currentQuestionIndex < 10) {
         setNextQuestion();
         localStorage.setItem("score", scoreElement);
-        console.log(scoreElement);
-        console.log(score);
     } else {
         endGame();
     }
 });
 
 /**
- *  * begin the quiz game
+ * begins the quiz game
  */
 function beginQuiz() {
     console.log("Quiz started");
+
     //to hide welcome page and display the quiz game section
     welcomePage.classList.add("hide");
     quizArea.classList.remove("hide");
+
     //shuffles the questions array to generate random questions
     shuffleArray(myQuestions);
+
+    //resets the current question index and scores
     currentQuestionIndex = 0;
     scoreElement = 0;
     document.getElementById("score").innerText = 0;
@@ -70,7 +91,8 @@ function beginQuiz() {
 }
 
 /**
- * to randomise the questions
+ * to randomise the questions and answers
+ * Fisher-Yates algorithm provided by mentor 
  */
 function shuffleArray(array) {
     for (let i = array.length - 1; i > 0; i--) {
@@ -81,7 +103,7 @@ function shuffleArray(array) {
 }
 
 /**
- * resets question area and loads the next random question
+ * resets question area and loads the next question
  */
 function setNextQuestion() {
     resetState();
@@ -90,14 +112,17 @@ function setNextQuestion() {
 }
 
 /**
- * display the question
+ * displays the question
  */
 function displayQuestion(questions) {
     questionElement.innerText = questions.question;
 
-    //display the answers
+    //shuffle the answers so that the top answer is not always correct
     shuffleArray(questions.answers);
+
+    //displays the answers
     questions.answers.forEach((answer) => {
+
         //creates the answer buttons
         let button = document.createElement("button");
         button.innerText = answer.text;
@@ -128,7 +153,12 @@ function resetState() {
         answerButtonsElement.removeChild(answerButtonsElement.firstChild);
     }
 }
-
+/**
+ * 
+ * @param {event} e 
+ * incements the score in the event of a selected answer 
+ * being correct
+ */
 function selectAnswer(e) {
     const selectedButton = e.target;
     const correct = selectedButton.dataset.correct;
@@ -173,6 +203,7 @@ function instructions() {
     instructionNote.classList.remove("hide");
     console.log(instructions);
 }
+
 /**
  * to display the end final score page
  */
@@ -186,11 +217,17 @@ function endGame() {
     instructionButton.classList.add("hide");
     leaderboardButton.classList.remove("hide");
     leaderboard.classList.add("hide");
+
+    //to display the modal
     result.innerText = `Well Done! You have scored ${scoreElement}!`;
     highScoreModal.classList.remove("hide");
 }
 /**
  * to save your score to the leaderboard
+ * the code for this function was inspired by this tutorial 
+ *  https://www.youtube.com/watch?v=f4fB9Xg2JEY&ab_channel=BrianDesign
+ * and this article 
+ * https://michael-karen.medium.com/how-to-save-high-scores-in-local-storage-7860baca9d68
  */
 function saveHighScore(e) {
     e.preventDefault();
@@ -214,8 +251,6 @@ function saveHighScore(e) {
             return `<li class="highScore">${score.name} - ${score.score}`;
         })
         .join();
-    console.log(score.name);
-    console.log(score.score);
 }
 
 /**

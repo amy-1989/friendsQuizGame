@@ -19,6 +19,7 @@ body {
     justify-content: center;
 }
 
+/*style the header*/
 .logo {
     background: url("../images/friends-logo.webp") no-repeat center center;
     background-size: contain;
@@ -62,7 +63,6 @@ h2 {
     margin-bottom: 20px;
     font-size: 1.5em;
     background-color: rgba(0, 0, 255, 0.336);
-
 }
 
 .answerBtns {
@@ -72,7 +72,6 @@ h2 {
     justify-content: center;
     flex-direction: column;
     flex-wrap: wrap;
-
 }
 
 .btn {
@@ -104,7 +103,6 @@ h2 {
     font-size: 2em;
     padding-top: 16px;
     padding-bottom: 16px;
-
 }
 
 /* Welcome page section */
@@ -170,7 +168,6 @@ input {
     display: flex;
     background-color: blueviolet;
     color: black;
-
 }
 
 /*style the leaderboard*/
@@ -196,8 +193,10 @@ input {
 .highScore {
     margin-right: 5vw;
     list-style-type: none;
+    text-align: center;
 }
 
+/*style the instructions section*/
 .instructionText {
     border: 1px solid black;
     border-radius: 5px;
@@ -207,6 +206,7 @@ input {
     width: 60vw;
 }
 
+/*to toggle the divs between display and hide*/
 .hide {
     display: none;
 }
