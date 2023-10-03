@@ -75,7 +75,7 @@ This is a Trivia Quiz Game for fans of the popular TV show Friends.
     - Upon entering the site users arrive on a landing page with a clearly marked instruction button. Once clicked this will display how to play instructions.
   
   - As a first time visitor I want to navigate easily through the game.
-  - 
+   
     - The landing page has been designed with simplicity and ease of use in mind. Users are greeted with three buttons clearly labelled Play, Instructions & Leaderboard. 
     - If users click for instructions the instruction page will display along with a button to play, allowing the user to jump right into the game without having to navigate backwards. The quiz section has clearly displayed questions and answers and a next button to clearly guide the user through the game.
     - After playing the game users will be greeted with the option to play again also.
@@ -101,10 +101,13 @@ This is a Trivia Quiz Game for fans of the popular TV show Friends.
   - Frequent Visitor Goals
   
     - As a returning visitor I want to be able to play new questions.
+      - The game has been designed with an array of 50 questions from which 10 are pulled. These questions are stored in a separate js file to allow to easily update the array with more questions as needed to keep the game fresh. 
+  
     - As a returning visitor I want to be able to see how my scores compare to other users.
+      - There is a leaderboard function which allows users to add their name to the scoreboard. Different users of the same device will be able to compare scores, as scores are saved to local storage.
 
-    
 ### Further Testing
+
 
 ### Known Bugs
 
