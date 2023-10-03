@@ -20,11 +20,16 @@ const highScoreList = document.getElementById('highScoresList');
 const maxHighScores = 3;
 const highScoreModal = document.getElementById("myModal");
 
-const score = {
-    score: mostRecentScore,
-    name: username.value
-};
+// constt score = {
+// //     score: scoreElement,
+// //     name: username.value
+// //}
+
+let score = {};
+
 const highScores = JSON.parse(localStorage.getItem('highScores')) || [];
+
+console.log(highScores);
 
 
 username.addEventListener('keyup', () => {
@@ -50,7 +55,9 @@ nextButton.addEventListener('click', () => {
     currentQuestionIndex++;
     if (currentQuestionIndex < 10) {
         setNextQuestion();
-        localStorage.setItem('mostRecentScore', scoreElement);
+        localStorage.setItem('score', scoreElement);
+        console.log(scoreElement);
+        console.log(score);
     } else {
         endGame();
     }
@@ -64,7 +71,7 @@ function beginQuiz() {
     //to hide welcome page and display the quiz game section
     welcomePage.classList.add('hide');
     quizArea.classList.remove('hide');
-
+    shuffleArray(myQuestions);
     currentQuestionIndex = 0;
     scoreElement = 0;
     document.getElementById('score').innerText = 0;
@@ -88,8 +95,9 @@ function shuffleArray(array) {
 */
 function setNextQuestion() {
     resetState();
-    randomiseQuestions = shuffleArray(myQuestions);
-    displayQuestion(randomiseQuestions[currentQuestionIndex]);
+    // randomiseQuestions = shuffleArray(myQuestions);
+    displayQuestion(myQuestions[currentQuestionIndex]);
+    console.log(myQuestions);
 }
 
 /**
@@ -138,6 +146,8 @@ function selectAnswer(e) {
     //to increment the score for correct answers
     if (correct) {
         document.getElementById('score').innerText = ++scoreElement;
+        console.log(scoreElement);
+        console.log(score);
     }
     //convert answer buttons into an array
     Array.from(answerButtonsElement.children).forEach(button => {
@@ -189,12 +199,18 @@ function endGame() {
     console.log('endpage function');
     result.innerText = `Well Done! You have scored ${scoreElement}!`;
     highScoreModal.classList.remove('hide');
+    console.log(scoreElement);
+    console.log(score);
 }
 /**
  * to save your score to the leaderboard
  */
 function saveHighScore(e) {
     e.preventDefault();
+    score = {
+        score: scoreElement,
+        name: username.value
+    };
 
     highScores.push(score);
 
@@ -209,6 +225,8 @@ function saveHighScore(e) {
     highScoreList.innerHTML = highScores.map(score => {
         return `<li class="highScore">${score.name}-${score.score}`;
     }).join();
+    console.log(score.name);
+    console.log(score.score);
 }
 
 /**
@@ -218,4 +236,7 @@ function displayLeaderboard() {
     leaderboard.classList.remove('hide');
     instructionButton.classList.add('hide');
     leaderboardButton.classList.add('hide');
+    highScoreList.innerHTML = highScores.map(score => {
+        return `<li class="highScore">${score.name}-${score.score}`;
+    }).join();
 }
