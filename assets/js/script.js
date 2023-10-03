@@ -28,7 +28,6 @@ const maxHighScores = 3;
 const highScoreModal = document.getElementById("myModal");
 let score = {};
 const highScores = JSON.parse(localStorage.getItem("highScores")) || [];
-let randomiseQuestions;
 let currentQuestionIndex;
 
 /**
