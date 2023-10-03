@@ -104,27 +104,28 @@ JSHint was used to validate the javascript files. No major issues were found.
     - There is a score counter at the bottom of the game area where players can easily see their score as they progress through the game.
     - At the end of the game users are greeted with a message showing their score and an option to add their name to the leaderboard in the event of a high score.
 
-  - Returning Visitor Goals
+- Returning Visitor Goals
 
-    - As a returning visitor I want to be able to answer different questions.
+  - As a returning visitor I want to be able to answer different questions.
 
-      - The game has been designed with 10 questions pulled from a collection of 50 questions to allow for variety upon subsequent playthroughs.
+    - The game has been designed with 10 questions pulled from a collection of 50 questions to allow for variety upon subsequent playthroughs.
 
-    - As a returning visitor I want to be able to see my progress/score and compare previous playthroughs.
+  - As a returning visitor I want to be able to see my progress/score and compare previous playthroughs.
 
-      - Upon finishing the game users are given the option of saving their high score to the leaderboard. Upon entering the site, users can click the leaderboard button on the landing page to view their high scores.
+    - Upon finishing the game users are given the option of saving their high score to the leaderboard. Upon entering the site, users can click the leaderboard button on the landing page to view their high scores.
 
-    - As a returning visitor I want to be able to bypass instructional sections.
-      - On the landing page the instructions are hidden behind an instruction button, allowing repeat players to begin playing straight away.
+  - As a returning visitor I want to be able to bypass instructional sections.
+    - On the landing page the instructions are hidden behind an instruction button, allowing repeat players to begin playing straight away.
 
-  - Frequent Visitor Goals
+- Frequent Visitor Goals
 
-    - As a returning visitor I want to be able to play new questions.
+  - As a returning visitor I want to be able to play new questions.
 
-      - The game has been designed with an array of 50 questions from which 10 are pulled. These questions are stored in a separate js file to allow to easily update the array with more questions as needed to keep the game fresh.
+    - The game has been designed with an array of 50 questions from which 10 are pulled. These questions are stored in a separate js file to allow to easily update the array with more questions as needed to keep the game fresh.
 
-    - As a returning visitor I want to be able to see how my scores compare to other users.
-      - There is a leaderboard function which allows users to add their name to the scoreboard. Different users of the same device will be able to compare scores, as scores are saved to local storage.
+  - As a returning visitor I want to be able to see how my scores compare to other users.
+
+    - There is a leaderboard function which allows users to add their name to the scoreboard. Different users of the same device will be able to compare scores, as scores are saved to local storage.
 
 ### Further Testing
 
@@ -143,7 +144,6 @@ JSHint was used to validate the javascript files. No major issues were found.
   - Samsung Galaxy 8plus
     ![image of Samsung Galaxy 8plus](./documents/images/samsung-galaxy-8plus.webp)
 
-
 - A number of testing was done to ensure that all buttons were working.
 - Friends and family were asked to play the game on their own devices, and point out any bugs or issues.
 - The website was continuously tested & debugged throughout development using Chrome DevTools.
@@ -153,7 +153,7 @@ JSHint was used to validate the javascript files. No major issues were found.
   - Mobile Lighthouse Result
     ![image of lighthouse result for mobile](./documents/images/lighthouse-mobile.webp)
 - The site was tested for accessability using WAVE
-    ![image of WAVE result](./documents/images/wave-test.webp)
+  ![image of WAVE result](./documents/images/wave-test.webp)
 
 ### Known Bugs
 
@@ -211,7 +211,7 @@ Press Enter. Your local clone will be created.
 
 - Copyright of the Friends logo belongs to David & Marta Kauffman & WarnerMedia
 - The favicon image was taken from Very Ireland.
-  
+
 ### Acknowledgements
 
 - I would like to thank my mentor Narender for all his help and guidance with this project.
