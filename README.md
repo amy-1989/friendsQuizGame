@@ -2,6 +2,8 @@
 
 This is a Trivia Quiz Game for fans of the popular TV show Friends.
 
+![image of responsiveness on different screens](./documents/images/am-i-responsive.webp)
+
 ## User Experience
 
 - User Stories
@@ -78,7 +80,7 @@ The W3C Markup Validator and W3C CSS Validator Services were used to validate ev
 JSHint was used to validate the javascript files. No major issues were found.
 
 - W3C Markup Validator
-  ![image of validator results](./documents/images/)
+  ![image of validator results](./documents/images/html-validation.webp)
 
 - W3C CSS Validator
   ![image of validator results](./documents/images/css-validation.webp)
@@ -125,11 +127,22 @@ JSHint was used to validate the javascript files. No major issues were found.
       - There is a leaderboard function which allows users to add their name to the scoreboard. Different users of the same device will be able to compare scores, as scores are saved to local storage.
 
 ### Further Testing
+
 - The website was tested on Google Chrome, Microsoft Edge, Safari and Mozilla Firefox browsers.
   ![image of browser test chart](./documents/images/browser-test.webp)
 
 - The website was tested on a variety of devices such as Desktop, Ipad, Iphone and Galaxy phones.
   ![image of responsiveness chart](./documents/images/responsiveness-test.webp)
+
+  - iPhone SE
+    ![image of iphoneSE](./documents/images/iphone-se.webp)
+
+  - iPad Air
+    ![image of iPad Air screen](./documents/images/ipad-air.webp)
+
+  - Samsung Galaxy 8plus
+    ![image of Samsung Galaxy 8plus](./documents/images/samsung-galaxy-8plus.webp)
+
 
 - A number of testing was done to ensure that all buttons were working.
 - Friends and family were asked to play the game on their own devices, and point out any bugs or issues.
@@ -180,12 +193,14 @@ Press Enter. Your local clone will be created.
 ## Credits
 
 ### Code
-- The code for the overall quiz was inspired by WebDevSimplified tutorial
-  https://www.youtube.com/watch?v=riDzcEQbX6k&ab_channel=WebDevSimplified
-- The code for saving the high score was inspired by youtube tutorial by Brian Design
-  https://www.youtube.com/watch?v=f4fB9Xg2JEY&ab_channel=BrianDesign 
-- The code for local storage was inspired by 
 
+- The code for the overall quiz was inspired by WebDevSimplified tutorial
+  - <https://www.youtube.com/watch?v=riDzcEQbX6k&ab_channel=WebDevSimplified>.
+- The code for saving the high score was inspired by youtube tutorial by Brian Design
+  - <https://www.youtube.com/watch?v=f4fB9Xg2JEY&ab_channel=BrianDesign>.
+- The code for local storage was inspired by this article by Michael Karen
+  - <https://michael-karen.medium.com/how-to-save-high-scores-in-local-storage-7860baca9d68>.
+- The Fisher-Yates algorithm was introduced to me by my mentor Narender Singh.
 
 ### Content
 
@@ -196,5 +211,8 @@ Press Enter. Your local clone will be created.
 
 - Copyright of the Friends logo belongs to David & Marta Kauffman & WarnerMedia
 - The favicon image was taken from Very Ireland.
-- 
+  
 ### Acknowledgements
+
+- I would like to thank my mentor Narender for all his help and guidance with this project.
+- I would like to thank Tutor Support especially Sarah, for her help in debugging my leaderboard functionality.
